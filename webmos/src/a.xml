@@ -1,0 +1,1 @@
+{"MaintainDeviceStaffRelationResponse":{"ResultInfo":[{"ResultCode":"1111","MaintainInfos":[{"MaintainInfo":[{"MacAddress":"1111112323","Flag":"111","Remark":"1K"},{"MacAddress":"1111112323","Flag":"22222","Remark":"2222K"},{"MacAddress":"333333333","Flag":"333333","Remark":"3333333K"}]}],"ResultRemarks":"错误"}]}}
