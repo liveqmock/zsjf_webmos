@@ -1,6 +1,0 @@
-packageName=com.cattsoft.sg
-fileSavePath=d:\\develop\\eclipse-workspace\\CodeGenMachines\\src\\com\\cattsoft\\sg\\
-url=jdbc:oracle:thin:@133.96.30.10:1521:ORACLE2
-userid=spsuser
-passwd=spsuser
-fileSaveMame=d:\\develop\\eclipse-workspace\\CodeGenMachines\\src\\test\\sg.txt

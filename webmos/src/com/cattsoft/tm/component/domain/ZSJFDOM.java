@@ -929,6 +929,36 @@ public class ZSJFDOM {
 	
 	}
 	
+	/**
+	 * 日通报-渠道客户经理日报
+	 * 
+	 * @param m
+	 * @return
+	 * @throws AppException
+	 * @throws SysException
+	 */
+	public String rtb4qdkhjlrb(String reqm) throws AppException, SysException {
+		com.alibaba.fastjson.JSONObject json=com.alibaba.fastjson.JSONObject.parseObject(reqm); 
+		saveOperationLog(json);
+		String date=json.getString("date");
+		Date d=DateUtil.str2Date(date);
+		String staffId=json.getString("staffId");
+		Map aMap=new HashMap();
+		aMap.put("openDate", date);
+		aMap.put("staffId", staffId);
+		  
+		IZSJFMDAO dao= (IZSJFMDAO) DAOFactory.getDAO(IZSJFMDAO.class);
+		List list=dao.rtb4qdkhjlrb(aMap);
+		if(list==null)list=new ArrayList();
+		Map m=new HashMap();
+		m.put("list", list);
+		String res=com.alibaba.fastjson.JSONObject.toJSONString(m);
+		return res;
+	
+	
+		
+	}
+	
 	
 	
 }

@@ -1,6 +1,0 @@
-packageName=com.cattsoft.bm
-fileSavePath=e:\\workspace\\CodeGenMachines\\src\\com\\cattsoft\\bm\\
-url=jdbc:oracle:thin:@133.96.30.10:1521:ORACLE2
-userid=spsuser
-passwd=spsuser
-fileSaveMame=e:\\workspace\\CodeGenMachines\\src\\test\\bm.txt

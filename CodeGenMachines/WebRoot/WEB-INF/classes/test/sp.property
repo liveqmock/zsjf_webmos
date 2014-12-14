@@ -1,6 +1,0 @@
-packageName=com.cattsoft.sp
-fileSavePath=d:\\Workspace\\CodeGenMachines\\src\\com\\cattsoft\\sp\\
-url=jdbc:oracle:thin:@133.96.30.17:1521:FBKT
-userid=hbcncrh
-passwd=hbcncrh
-fileSaveMame=d:\\Workspace\\CodeGenMachines\\src\\test\\sp.txt

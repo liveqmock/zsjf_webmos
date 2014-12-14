@@ -456,6 +456,19 @@ public class ZSJFAction extends DispatchAction{
 	}
 	 
 	
+	/**
+	 *日通报-渠道客户经理日报
+	 */
+	public ActionForward rtb4qdkhjlrb(ActionMapping mapping,ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception{
+		String reqParm=getJSON(request);
+		String res=ZSJFDelegate.getDelegate().xyrb4xywgzdywrb(reqParm);
+		com.cattsoft.webpub.util.ReqUtil.write(response, res);
+		System.out.println("res======"+res);
+		return null;
+	}
+	 
+	
 	
 	
 	

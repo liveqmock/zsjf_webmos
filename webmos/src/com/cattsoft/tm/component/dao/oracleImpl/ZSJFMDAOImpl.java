@@ -37,6 +37,7 @@ import com.cattsoft.tm.vo.TRptJtbbHybrbSVO;
 import com.cattsoft.tm.vo.TRptJtbbQsfzrbSVO;
 import com.cattsoft.tm.vo.TRptKdywrbSVO;
 import com.cattsoft.tm.vo.TRptQdrbGwdywfzrbSVO;
+import com.cattsoft.tm.vo.TRptQdrbQdkhjlrbSVO;
 import com.cattsoft.tm.vo.TRptQdrbQdwgzdywrbSVO;
 import com.cattsoft.tm.vo.TRptWgrbKhjllzrbSVO;
 import com.cattsoft.tm.vo.TRptWgybKdyfzbbSVO;
@@ -2355,6 +2356,101 @@ public class ZSJFMDAOImpl implements IZSJFMDAO {
 
 			while (rs.next()) {
 				TRptXyrbXygezdywrbSVO   tRptXyrbXygezdywrbSVO = new TRptXyrbXygezdywrbSVO();
+				tRptXyrbXygezdywrbSVO.setWgMc(rs.getString("WG_MC"));
+				tRptXyrbXygezdywrbSVO.setWgCode(rs.getString("WG_CODE"));
+				tRptXyrbXygezdywrbSVO.setWdMc(rs.getString("WD_MC"));
+				tRptXyrbXygezdywrbSVO.setPt2gRfz(rs.getString("PT2G_RFZ"));
+				tRptXyrbXygezdywrbSVO.setPt2gDylj(rs.getString("PT2G_DYLJ"));
+				tRptXyrbXygezdywrbSVO.setPt2gSytq(rs.getString("PT2G_SYTQ"));
+				tRptXyrbXygezdywrbSVO.setPt2gZzs(rs.getString("PT2G_ZZS"));
+				
+				tRptXyrbXygezdywrbSVO.setOcs2gRxs(rs.getString("OCS2G_RXS"));
+				tRptXyrbXygezdywrbSVO.setOcs2gRjh(rs.getString("OCS2G_RJH"));
+				tRptXyrbXygezdywrbSVO.setOcs2gDyljsx(rs.getString("OCS2G_DYLJSX"));
+				tRptXyrbXygezdywrbSVO.setOcs2gSyljjh(rs.getString("OCS2G_SYLJJH"));
+				
+				tRptXyrbXygezdywrbSVO.setPt3gRfz(rs.getString("PT3G_RFZ"));
+				tRptXyrbXygezdywrbSVO.setPt3gDylj(rs.getString("PT3G_DYLJ"));
+				tRptXyrbXygezdywrbSVO.setPt3gSytq(rs.getString("PT3G_SYTQ"));
+				tRptXyrbXygezdywrbSVO.setPt3gZzs(rs.getString("PT3G_ZZS"));
+				tRptXyrbXygezdywrbSVO.setOpenDate(rs.getTimestamp("OPEN_DATE"));
+				
+				tRptXyrbXygezdywrbSVO.setPt4gRfz(rs.getString("PT4G_RFZ"));
+				tRptXyrbXygezdywrbSVO.setPt4gDgyl(rs.getString("PT4G_DGYL"));
+				tRptXyrbXygezdywrbSVO.setPt4gSytq(rs.getString("PT4G_SYTQ"));
+				tRptXyrbXygezdywrbSVO.setPt4gZzs(rs.getString("PT4G_ZZS"));
+				
+				tRptXyrbXygezdywrbSVO.setOcs3gRfz(rs.getString("OCS3G_RFZ"));
+				tRptXyrbXygezdywrbSVO.setOcs3gDylj(rs.getString("OCS3G_DYLJ"));
+				tRptXyrbXygezdywrbSVO.setOcs3gSytq(rs.getString("OCS3G_SYTQ"));
+				tRptXyrbXygezdywrbSVO.setOcs3gZzs(rs.getString("OCS3G_ZZS"));
+				
+				tRptXyrbXygezdywrbSVO.setRh2g3gRfz(rs.getString("RH2G3G_RFZ"));
+				tRptXyrbXygezdywrbSVO.setRh2g3gDylj(rs.getString("RH2G3G_DYLJ"));
+				tRptXyrbXygezdywrbSVO.setRh2g3gSytq(rs.getString("RH2G3G_SYTQ"));
+				tRptXyrbXygezdywrbSVO.setRh2g3gZzs(rs.getString("RH2G3G_ZZS"));
+				
+				res.add(tRptXyrbXygezdywrbSVO);
+
+			}
+		} catch (SQLException se) {
+			throw new SysException("100003", "JDBC操作异常！", se);
+		} finally {
+			JdbcUtil.close(rs, ps);
+		}
+
+		if (0 == res.size())
+			res = null;
+		return res;
+
+	}
+	
+
+	/**
+	 * 日通报-渠道客户经理日报
+	 * 
+	 * @param m
+	 * @return
+	 * @throws AppException
+	 * @throws SysException
+	 */
+	public List rtb4qdkhjlrb(Map m) throws AppException, SysException {
+
+		if (m == null) {
+			throw new AppException("100001", "缺少DAO操作对象！");
+		}
+		List res = new ArrayList();
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Sql sql = new Sql(
+				"SELECT WG_MC,WG_CODE,WD_MC,PT2G_RFZ,PT2G_DYLJ,PT2G_SYTQ,PT2G_ZZS," +
+				"OCS2G_RXS,OCS2G_RJH,OCS2G_DYLJSX,OCS2G_SYLJJH," +
+				"PT3G_RFZ,PT3G_DYLJ,PT3G_SYTQ,PT3G_ZZS,OPEN_DATE,CREATE_DATE," +
+				"PT4G_RFZ,PT4G_DGYL,PT4G_SYTQ,PT4G_ZZS," +
+				"OCS3G_RFZ,OCS3G_DYLJ,OCS3G_SYTQ,OCS3G_ZZS," +
+				"RH2G3G_RFZ,RH2G3G_DYLJ,RH2G3G_SYTQ,RH2G3G_ZZS " +
+				" FROM T_RPT_QDRB_QDKHJLRB a WHERE 1=1 ");
+
+		try {
+
+			String openDate = (String) m.get("openDate");
+			String staffId = (String) m.get("staffId");
+			sql.append(" and to_char(OPEN_DATE,'yyyy-mm-dd')=:openDate");
+			sql.setString("openDate", openDate);
+
+			sql.append(" and exists (select 1 from staff_td_m_area b where a.wg_code=b.area_code and b.staff_id=:staffId )   ");
+
+			sql.setString("staffId", staffId);
+
+			conn = ConnectionFactory.getConnection();
+			ps = conn.prepareStatement(sql.getSql());
+			ps = sql.fillParams(ps);
+			sql.log(this.getClass());
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				TRptQdrbQdkhjlrbSVO   tRptXyrbXygezdywrbSVO = new TRptQdrbQdkhjlrbSVO();
 				tRptXyrbXygezdywrbSVO.setWgMc(rs.getString("WG_MC"));
 				tRptXyrbXygezdywrbSVO.setWgCode(rs.getString("WG_CODE"));
 				tRptXyrbXygezdywrbSVO.setWdMc(rs.getString("WD_MC"));

@@ -1142,11 +1142,53 @@ public class ZSJFDelegate {
 				}
 			}
 			return returnValue;
+		}
 		
 		
-			
+		/**
+		 * 日通报-渠道客户经理日报
+		 * 
+		 * @param m
+		 * @return
+		 * @throws AppException
+		 * @throws SysException
+		 */
+		public String rtb4qdkhjlrb(String reqm) throws AppException, SysException {
+			Connection conn = null;
+			String returnValue = null;
+			try {
+				conn = ConnectionFactory.createConnection();
+				conn.setAutoCommit(false);
+				ZSJFDOM dom=new ZSJFDOM();
+				returnValue=dom.rtb4qdkhjlrb(reqm);
+				ConnectionFactory.commit();
+			} catch (Exception e) { 
+				e.printStackTrace();
+				log.error("[IOM系统接口svcCallIOMByMosNative异常]" + e);
+				try {
+					ConnectionFactory.rollback();
+					JSONObject ret = new JSONObject();
+					ret.put("resultCode", 0);
+					ret.put("resultInfo", e.getMessage());
+					returnValue = StringUtil.getAppException4MOS(e.getMessage());
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					log.error("[IOM系统接口svcCallIOMByMosNative事务回滚异常]" + e1);
+					returnValue = StringUtil.getAppException4MOS(e.getMessage());
+				}
+			} finally {
+				try {
+					ConnectionFactory.closeConnection();
+				} catch (Exception e) {
+					e.printStackTrace();
+					log.error("[IOM系统接口svcCallIOMByMosNative数据库连接关闭异常]" + e);
+					returnValue = StringUtil.getAppException4MOS(e.getMessage());
+				}
+			}
+			return returnValue;
 		
 		}
+		
 		
 		
 }
