@@ -1,0 +1,6 @@
+packageName=com.cattsoft.gis
+fileSavePath=d:\\workspace\\CodeGenMachines\\src\\com\\cattsoft\\gis\\
+url=jdbc:oracle:thin:@133.96.30.10:1521:ORACLE2
+userid=spsuser
+passwd=spsuser
+fileSaveMame=d:\\workspace\\CodeGenMachines\\src\\test\\gis.txt

@@ -208,4 +208,13 @@ public interface IZSJFMDAO extends IDAO{
 	 */
 	public List getCpList4srhb4khq() throws AppException, SysException;
 
+	/**
+	 * 校园日报 校园网格重点业务日报
+	 * 
+	 * @param m
+	 * @return
+	 * @throws AppException
+	 * @throws SysException
+	 */
+	public List xyrb4xywgzdywrb(Map m) throws AppException, SysException ;
 }

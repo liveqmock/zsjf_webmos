@@ -1099,5 +1099,55 @@ public class ZSJFDelegate {
 		
 			
 		}
+		
+		
+		/**
+		 * 校园日报 校园网格重点业务日报
+		 * 
+		 * @param m
+		 * @return
+		 * @throws AppException
+		 * @throws SysException
+		 */
+		public String xyrb4xywgzdywrb(String reqParm) throws AppException, SysException{
+			Connection conn = null;
+			String returnValue = null;
+			try {
+				conn = ConnectionFactory.createConnection();
+				conn.setAutoCommit(false);
+				ZSJFDOM dom=new ZSJFDOM();
+				returnValue=dom.xyrb4xywgzdywrb(reqParm);
+				ConnectionFactory.commit();
+			} catch (Exception e) { 
+				e.printStackTrace();
+				log.error("[IOM系统接口svcCallIOMByMosNative异常]" + e);
+				try {
+					ConnectionFactory.rollback();
+					JSONObject ret = new JSONObject();
+					ret.put("resultCode", 0);
+					ret.put("resultInfo", e.getMessage());
+					returnValue = StringUtil.getAppException4MOS(e.getMessage());
+				} catch (Exception e1) {
+					e1.printStackTrace();
+					log.error("[IOM系统接口svcCallIOMByMosNative事务回滚异常]" + e1);
+					returnValue = StringUtil.getAppException4MOS(e.getMessage());
+				}
+			} finally {
+				try {
+					ConnectionFactory.closeConnection();
+				} catch (Exception e) {
+					e.printStackTrace();
+					log.error("[IOM系统接口svcCallIOMByMosNative数据库连接关闭异常]" + e);
+					returnValue = StringUtil.getAppException4MOS(e.getMessage());
+				}
+			}
+			return returnValue;
+		
+		
+			
+		
+		}
+		
+		
 }
 

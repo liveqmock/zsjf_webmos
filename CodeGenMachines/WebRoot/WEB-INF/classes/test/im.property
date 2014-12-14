@@ -1,0 +1,6 @@
+packageName=com.cattsoft.im
+fileSavePath=f:\\sps\\workspace\\CodeGenMachines\\src\\com\\cattsoft\\im\\
+url=jdbc:oracle:thin:@10.48.66.7:1521:hbcrm
+userid=spsuser
+passwd=spsuser
+fileSaveMame=f:\\sps\\workspace\\CodeGenMachines\\src\\test\\im.txt

@@ -443,6 +443,18 @@ public class ZSJFAction extends DispatchAction{
 	}
 
 	
+	/**
+	 * 校园日报 校园网格重点业务日报
+	 */
+	public ActionForward xyrb4xywgzdywrb(ActionMapping mapping,ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception{
+		String reqParm=getJSON(request);
+		String res=ZSJFDelegate.getDelegate().xyrb4xywgzdywrb(reqParm);
+		com.cattsoft.webpub.util.ReqUtil.write(response, res);
+		System.out.println("res======"+res);
+		return null;
+	}
+	 
 	
 	
 	
