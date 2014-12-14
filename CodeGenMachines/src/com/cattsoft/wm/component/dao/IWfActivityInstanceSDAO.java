@@ -1,1 +1,0 @@
-package com.cattsoft.wm.component.dao;import com.cattsoft.pub.dao.ISDAO; /**   * 方法IWfActivityInstanceSDAO   * <p>Company: 大唐软件</p>   * @author ：白小亮。   * @version 1.1  2007-9-23  */public interface IWfActivityInstanceSDAO extends ISDAO{         }
