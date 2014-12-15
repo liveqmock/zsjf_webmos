@@ -469,6 +469,33 @@ public class ZSJFAction extends DispatchAction{
 	}
 	 
 	
+	/**
+	 * 校园日报-商企网格重点业务日报
+	 */
+	public ActionForward xyrb4Sqwgzdywrb(ActionMapping mapping,ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception{
+		String reqParm=getJSON(request);
+		String res=ZSJFDelegate.getDelegate().hsrb4zdywlz(reqParm);
+		com.cattsoft.webpub.util.ReqUtil.write(response, res);
+		System.out.println("res======"+res);
+		return null;
+	
+	}
+	
+	/**
+	 * 校园日报-商企网格重点业务日报
+	 */
+	public ActionForward xyrb4sqwgzdywrb(ActionMapping mapping,ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception{
+		String reqParm=getJSON(request);
+		String res=ZSJFDelegate.getDelegate().xyrb4sqwgzdywrb(reqParm);
+		com.cattsoft.webpub.util.ReqUtil.write(response, res);
+		System.out.println("res======"+res);
+		return null;
+	
+	}
+	
+	
 	
 	
 	

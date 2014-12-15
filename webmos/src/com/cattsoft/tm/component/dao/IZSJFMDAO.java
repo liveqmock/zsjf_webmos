@@ -228,4 +228,9 @@ public interface IZSJFMDAO extends IDAO{
 	 * @throws SysException
 	 */
 	public List rtb4qdkhjlrb(Map m) throws AppException, SysException;
+	
+	/**
+	 * 网格日报-商企网格重点业务日报
+	 */
+	public List xyrb4sqwgzdywrb(Map m) throws AppException, SysException;
 }
