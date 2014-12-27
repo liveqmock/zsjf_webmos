@@ -20,6 +20,7 @@ import com.cattsoft.sm.component.dao.ISysUserSDAO;
 import com.cattsoft.sm.vo.SysUserSVO;
 import com.cattsoft.tm.component.dao.ILoginLogSDAO;
 import com.cattsoft.tm.component.dao.IMosVersionMDAO;
+import com.cattsoft.tm.component.dao.INoticeSDAO;
 import com.cattsoft.tm.component.dao.ITRpt2g3grhrbSDAO;
 import com.cattsoft.tm.component.dao.IZSJFMDAO;
 import com.cattsoft.tm.component.dao.IZsjfReportIntroductionSDAO;
@@ -27,6 +28,7 @@ import com.cattsoft.tm.vo.FuncNodeSVO;
 import com.cattsoft.tm.vo.FuncNodeTreeSVO;
 import com.cattsoft.tm.vo.LoginLogSVO;
 import com.cattsoft.tm.vo.MosVersionSVO;
+import com.cattsoft.tm.vo.NoticeSVO;
 import com.cattsoft.tm.vo.TRpt2g3grhrbSVO;
 import com.cattsoft.tm.vo.TRpt2gfzrbSVO;
 import com.cattsoft.tm.vo.TRpt3grbSVO;
@@ -977,8 +979,25 @@ public class ZSJFDOM {
 		m.put("list", list);
 		String res=com.alibaba.fastjson.JSONObject.toJSONString(m);
 		return res;
-		
+	}
 	
+	/**
+	 * ¹«¸æ
+	 * @return
+	 * @throws AppException
+	 * @throws SysException
+	 */
+	public String showNotice() throws AppException, SysException{
+		NoticeSVO notice=new NoticeSVO();
+		notice.setSts("A");
+		INoticeSDAO dao= (INoticeSDAO) DAOFactory.getDAO(INoticeSDAO.class);
+		List noticeList=dao.findByVO(notice);
+		if(noticeList==null) {
+			return com.alibaba.fastjson.JSONObject.toJSONString(new NoticeSVO());
+		}else {
+			return com.alibaba.fastjson.JSONObject.toJSONString(noticeList.get(0));
+		}
+		
 		
 	}
 	

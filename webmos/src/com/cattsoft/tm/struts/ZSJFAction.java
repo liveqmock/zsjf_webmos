@@ -18,10 +18,7 @@ import org.apache.struts.actions.DispatchAction;
 import com.cattsoft.pub.exception.AppException;
 import com.cattsoft.pub.exception.SysException;
 import com.cattsoft.pub.util.StringUtil;
-import com.cattsoft.tm.delegate.SMLoginDelegate;
 import com.cattsoft.tm.delegate.ZSJFDelegate;
-import com.cattsoft.tm.vo.TRptJtbbQsfzrbSVO;
-import com.cattsoft.webpub.util.ReqUtil;
 
 public class ZSJFAction extends DispatchAction{
 	
@@ -462,7 +459,7 @@ public class ZSJFAction extends DispatchAction{
 	public ActionForward rtb4qdkhjlrb(ActionMapping mapping,ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception{
 		String reqParm=getJSON(request);
-		String res=ZSJFDelegate.getDelegate().xyrb4xywgzdywrb(reqParm);
+		String res=ZSJFDelegate.getDelegate().rtb4qdkhjlrb(reqParm);
 		com.cattsoft.webpub.util.ReqUtil.write(response, res);
 		System.out.println("res======"+res);
 		return null;
@@ -496,6 +493,17 @@ public class ZSJFAction extends DispatchAction{
 	}
 	
 	
+	/**
+	 * ÏÔÊ¾¹«¸æ
+	 */
+	public ActionForward showNotice(ActionMapping mapping,ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception{
+		String reqParm=getJSON(request);
+		String res=ZSJFDelegate.getDelegate().showNotice();
+		com.cattsoft.webpub.util.ReqUtil.write(response, res);
+		return null;
+	
+	}
 	
 	
 	
