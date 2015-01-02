@@ -2424,7 +2424,7 @@ public class ZSJFMDAOImpl implements IZSJFMDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Sql sql = new Sql(
-				"SELECT WG_MC,WG_CODE,WD_MC,PT2G_RFZ,PT2G_DYLJ,PT2G_SYTQ,PT2G_ZZS," +
+				"SELECT WG_MC,WG_CODE,KHJL_MC,WD_MC,PT2G_RFZ,PT2G_DYLJ,PT2G_SYTQ,PT2G_ZZS," +
 				"OCS2G_RXS,OCS2G_RJH,OCS2G_DYLJSX,OCS2G_SYLJJH," +
 				"PT3G_RFZ,PT3G_DYLJ,PT3G_SYTQ,PT3G_ZZS,OPEN_DATE,CREATE_DATE," +
 				"PT4G_RFZ,PT4G_DGYL,PT4G_SYTQ,PT4G_ZZS," +
@@ -2436,8 +2436,23 @@ public class ZSJFMDAOImpl implements IZSJFMDAO {
 
 			String openDate = (String) m.get("openDate");
 			String staffId = (String) m.get("staffId");
-			sql.append(" and to_char(OPEN_DATE,'yyyy-mm-dd')=:openDate");
+			sql.append(" and to_char(OPEN_DATE,'yyyy-mm-dd')=:openDate" );
 			sql.setString("openDate", openDate);
+			
+			if (StringUtil.isBlank((String)m.get("wg"))
+					|| "全部".equals((String)m.get("wg"))) {
+			} else {
+				sql.append(" and WG_MC=:wgmc");
+				sql.setString("wgmc", (String)m.get("wg"));
+			}
+			
+			if (StringUtil.isBlank((String)m.get("khjl"))
+					|| "全部".equals((String)m.get("khjl"))) {
+			} else {
+				sql.append(" and KHJL_MC=:khjl");
+				sql.setString("khjl", (String)m.get("khjl"));
+			}
+			
 
 			sql.append(" and exists (select 1 from staff_td_m_area b where a.wg_code=b.area_code and b.staff_id=:staffId )   ");
 
@@ -2454,6 +2469,7 @@ public class ZSJFMDAOImpl implements IZSJFMDAO {
 				tRptXyrbXygezdywrbSVO.setWgMc(rs.getString("WG_MC"));
 				tRptXyrbXygezdywrbSVO.setWgCode(rs.getString("WG_CODE"));
 				tRptXyrbXygezdywrbSVO.setWdMc(rs.getString("WD_MC"));
+				tRptXyrbXygezdywrbSVO.setKhjlMc(rs.getString("KHJL_MC"));
 				tRptXyrbXygezdywrbSVO.setPt2gRfz(rs.getString("PT2G_RFZ"));
 				tRptXyrbXygezdywrbSVO.setPt2gDylj(rs.getString("PT2G_DYLJ"));
 				tRptXyrbXygezdywrbSVO.setPt2gSytq(rs.getString("PT2G_SYTQ"));
@@ -2585,6 +2601,79 @@ public class ZSJFMDAOImpl implements IZSJFMDAO {
 	}
 	
 	
+	/**
+	 * 获取渠道客户经理日报中的查询条件:网格名称
+	 * @param m
+	 * @return
+	 * @throws AppException
+	 * @throws SysException
+	 */
+	public List getQdrb4QdkhjlQuery4wg() throws AppException, SysException {
+		List res = new ArrayList();
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Sql sql = new Sql("select  distinct wg_mc from t_rpt_qdrb_qdkhjlrb ");
+
+		try {
+			conn = ConnectionFactory.getConnection();
+			ps = conn.prepareStatement(sql.getSql());
+			ps = sql.fillParams(ps);
+			sql.log(this.getClass());
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Map m1 = new HashMap();
+				m1.put("diqu", rs.getString("wg_mc"));
+				res.add(m1);
+			}
+		} catch (SQLException se) {
+			throw new SysException("100003", "JDBC操作异常！", se);
+		} finally {
+			JdbcUtil.close(rs, ps);
+		}
+
+		if (0 == res.size())
+			res = null;
+		return res;
+	}
+	
+	/**
+	 * 获取渠道客户经理日报中的查询条件:客户经理名称
+	 * @param m
+	 * @return
+	 * @throws AppException
+	 * @throws SysException
+	 */
+	public List getQdrb4QdkhjlQuery4khjl() throws AppException, SysException {
+		List res = new ArrayList();
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Sql sql = new Sql("select  distinct khjl_mc from t_rpt_qdrb_qdkhjlrb ");
+
+		try {
+			conn = ConnectionFactory.getConnection();
+			ps = conn.prepareStatement(sql.getSql());
+			ps = sql.fillParams(ps);
+			sql.log(this.getClass());
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Map m1 = new HashMap();
+				m1.put("diqu", rs.getString("khjl_mc"));
+				res.add(m1);
+			}
+		} catch (SQLException se) {
+			throw new SysException("100003", "JDBC操作异常！", se);
+		} finally {
+			JdbcUtil.close(rs, ps);
+		}
+
+		if (0 == res.size())
+			res = null;
+		return res;
+	}
 	
 
 }

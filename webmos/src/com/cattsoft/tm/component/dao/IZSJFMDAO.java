@@ -233,4 +233,9 @@ public interface IZSJFMDAO extends IDAO{
 	 * 网格日报-商企网格重点业务日报
 	 */
 	public List xyrb4sqwgzdywrb(Map m) throws AppException, SysException;
+	
+	public List getQdrb4QdkhjlQuery4wg() throws AppException, SysException ;
+	
+	public List getQdrb4QdkhjlQuery4khjl() throws AppException, SysException ;
+	
 }

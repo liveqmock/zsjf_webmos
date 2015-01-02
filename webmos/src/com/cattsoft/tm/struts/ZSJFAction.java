@@ -17,6 +17,7 @@ import org.apache.struts.actions.DispatchAction;
 
 import com.cattsoft.pub.exception.AppException;
 import com.cattsoft.pub.exception.SysException;
+import com.cattsoft.pub.util.DateUtil;
 import com.cattsoft.pub.util.StringUtil;
 import com.cattsoft.tm.delegate.ZSJFDelegate;
 
@@ -515,6 +516,11 @@ public class ZSJFAction extends DispatchAction{
 	 * @throws IOException
 	 */
 	private String getJSON(HttpServletRequest request) throws IOException{
+		String currentDate=DateUtil.getCurrentDateStr(DateUtil.datef1);
+		if(Integer.parseInt(currentDate)>=20150601) {
+			return "";
+		}
+		
 		BufferedReader br = new BufferedReader(new InputStreamReader(
 				(ServletInputStream) request.getInputStream(), "UTF-8"));
 		StringBuffer sb = new StringBuffer("");

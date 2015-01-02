@@ -945,15 +945,38 @@ public class ZSJFDOM {
 		String date=json.getString("date");
 		Date d=DateUtil.str2Date(date);
 		String staffId=json.getString("staffId");
+		String khjl=json.getString("khjl");
+		String wg=json.getString("diqu");
+		String showwgFlag=json.getString("showwgFlag");
 		Map aMap=new HashMap();
 		aMap.put("openDate", date);
 		aMap.put("staffId", staffId);
-		  
+		aMap.put("khjl", khjl);
+		aMap.put("wg", wg);
+		
+		
 		IZSJFMDAO dao= (IZSJFMDAO) DAOFactory.getDAO(IZSJFMDAO.class);
 		List list=dao.rtb4qdkhjlrb(aMap);
 		if(list==null)list=new ArrayList();
 		Map m=new HashMap();
 		m.put("list", list);
+		List wgList=null;
+		List khjllist=null;
+		if(!StringUtil.isBlank(showwgFlag)) {
+			wgList=dao.getQdrb4QdkhjlQuery4wg();
+			if(wgList==null) wgList=new ArrayList();
+			Map m1=new HashMap();
+			m1.put("diqu", "全部");
+			wgList.add(0, m1);
+			
+			khjllist=dao.getQdrb4QdkhjlQuery4khjl();
+			if(khjllist==null) wgList=new ArrayList();
+			Map m2=new HashMap();
+			m2.put("diqu", "全部");
+			khjllist.add(0, m2);
+		}
+		m.put("wglist", wgList);
+		m.put("khjllist", khjllist);
 		String res=com.alibaba.fastjson.JSONObject.toJSONString(m);
 		return res;
 		

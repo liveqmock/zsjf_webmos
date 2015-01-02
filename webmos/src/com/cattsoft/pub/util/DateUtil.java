@@ -27,6 +27,7 @@ public class DateUtil {
 	public static SimpleDateFormat datetimehm = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
 	public static SimpleDateFormat datef = new SimpleDateFormat("yyyy-MM-dd");
+	public static SimpleDateFormat datef1 = new SimpleDateFormat("yyyyMMdd");
 
 	/**
 	 * 按指定的格式将日期对象转换为字符串
@@ -216,6 +217,22 @@ public class DateUtil {
 	 */
 	public static Date getForeverDate() throws SysException {
 		return to_date("2049-12-31 00:00:00", "yyyy-MM-dd HH:mm:ss");
+	}
+	
+	public static String getCurrentDateStr() {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+		System.out.println("df.format(new Date())="+df.format(new Date()));
+		return df.format(new Date());
+	}
+	
+	public static String getCurrentDateStr(DateFormat df) {
+		System.out.println("df.format(new Date())="+df.format(new Date()));
+		return df.format(new Date());
+	}
+	
+	
+	public static void main(String args[]) {
+		new DateUtil().getCurrentDateStr(DateUtil.datef1);
 	}
 
 	/**
