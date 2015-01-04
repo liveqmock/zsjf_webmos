@@ -970,7 +970,7 @@ public class ZSJFDOM {
 			wgList.add(0, m1);
 			
 			khjllist=dao.getQdrb4QdkhjlQuery4khjl();
-			if(khjllist==null) wgList=new ArrayList();
+			if(khjllist==null) khjllist=new ArrayList();
 			Map m2=new HashMap();
 			m2.put("diqu", "全部");
 			khjllist.add(0, m2);
@@ -1020,9 +1020,52 @@ public class ZSJFDOM {
 		}else {
 			return com.alibaba.fastjson.JSONObject.toJSONString(noticeList.get(0));
 		}
-		
-		
 	}
+	
+	/**
+	 * 4G日报-4g业务日报
+	 */
+	public String g4rb44grb(String parm) throws AppException, SysException {
+		com.alibaba.fastjson.JSONObject json=com.alibaba.fastjson.JSONObject.parseObject(parm); 
+		saveOperationLog(json);
+		String date=json.getString("date");
+		Date d=DateUtil.str2Date(date);
+		String khp=json.getString("khp");
+		String hylx=json.getString("hylx");
+		String showwgFlag=json.getString("showwgFlag");
+		Map aMap=new HashMap();
+		aMap.put("openDate", date);
+		aMap.put("khp", khp);
+		aMap.put("hylx", hylx);
+		  
+		IZSJFMDAO dao= (IZSJFMDAO) DAOFactory.getDAO(IZSJFMDAO.class);
+		List list=dao.g4rb44grb(aMap);
+		if(list==null)list=new ArrayList();
+		Map m=new HashMap();
+		m.put("list", list);
+		
+		List khqList=null;
+		List hylxlist=null;
+		if(!StringUtil.isBlank(showwgFlag)) {
+			khqList=dao.get4grb44gywrbQuerykhq();
+			if(khqList==null) khqList=new ArrayList();
+			Map m1=new HashMap();
+			m1.put("diqu", "全部");
+			khqList.add(0, m1);
+			
+			hylxlist=dao.getQdrb4QdkhjlQuery4khjl();
+			if(hylxlist==null) hylxlist=new ArrayList();
+			Map m2=new HashMap();
+			m2.put("diqu", "全部");
+			hylxlist.add(0, m2);
+		}
+		m.put("wglist", khqList);
+		m.put("khjllist", hylxlist);
+		
+		String res=com.alibaba.fastjson.JSONObject.toJSONString(m);
+		return res;
+	}
+	
 	
 	
 	

@@ -506,8 +506,20 @@ public class ZSJFAction extends DispatchAction{
 	
 	}
 	
+	/**
+	 * 显示公告
+	 */
+	public ActionForward g4rb44grb(ActionMapping mapping,ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception{
+		String reqParm=getJSON(request);
+		String res=ZSJFDelegate.getDelegate().g4rb44grb(reqParm);
+		com.cattsoft.webpub.util.ReqUtil.write(response, res);
+		return null;
 	
 	
+		
+	}
+
 	
 	/**
 	 * 获得从客户端传入的json字符串

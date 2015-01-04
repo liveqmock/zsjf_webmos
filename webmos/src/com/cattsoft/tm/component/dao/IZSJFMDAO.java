@@ -238,4 +238,26 @@ public interface IZSJFMDAO extends IDAO{
 	
 	public List getQdrb4QdkhjlQuery4khjl() throws AppException, SysException ;
 	
+	/**
+	 * 4G日报-4g业务日报
+	 */
+	public List g4rb44grb(Map m) throws AppException, SysException ;
+	
+	/**
+	 *4G日报-4g业务日报:客户群
+	 * @param m
+	 * @return
+	 * @throws AppException
+	 * @throws SysException
+	 */
+	public List get4grb44gywrbQuerykhq() throws AppException, SysException ;
+	
+	/**
+	 *4G日报-4g业务日报:hylx
+	 * @param m
+	 * @return
+	 * @throws AppException
+	 * @throws SysException
+	 */
+	public List get4grb44gywrbQueryhylx() throws AppException, SysException ;
 }

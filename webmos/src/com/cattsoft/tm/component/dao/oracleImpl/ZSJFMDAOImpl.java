@@ -24,6 +24,7 @@ import com.cattsoft.tm.vo.FuncNodeSVO;
 import com.cattsoft.tm.vo.TRpgWgrbZdywlzrbSVO;
 import com.cattsoft.tm.vo.TRpt2gfzrbSVO;
 import com.cattsoft.tm.vo.TRpt3grbSVO;
+import com.cattsoft.tm.vo.TRpt4grb4gywrbSVO;
 import com.cattsoft.tm.vo.TRptGcjgtjMVO;
 import com.cattsoft.tm.vo.TRptGczttjMVO;
 import com.cattsoft.tm.vo.TRptGczttjSVO;
@@ -2669,11 +2670,149 @@ public class ZSJFMDAOImpl implements IZSJFMDAO {
 		} finally {
 			JdbcUtil.close(rs, ps);
 		}
+		if (0 == res.size())
+			res = null;
+		return res;
+	}
+	
+	
+	/**
+	 * 4G日报-4g业务日报
+	 */
+	public List g4rb44grb(Map m) throws AppException, SysException {
+		if (m == null) {
+			throw new AppException("100001", "缺少DAO操作对象！");
+		}
+		List res = new ArrayList();
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Sql sql = new Sql(
+				"SELECT CREATE_DATE,DYLJ,HYLX,KHQ,OPEN_DATE,RFZ,SYTQLJ,TCMC,ZZS FROM T_RPT_4GRB_4GYWRB WHERE 1=1 ");
+		try {
+			String openDate = (String) m.get("openDate");
+			sql.append(" and to_char(OPEN_DATE,'yyyy-mm-dd')=:openDate");
+			sql.setString("openDate", openDate);
+
+			if (StringUtil.isBlank((String)m.get("khq"))
+					|| "全部".equals((String)m.get("khq"))) {
+			} else {
+				sql.append(" and KHQ=:khq");
+				sql.setString("khq", (String)m.get("khq"));
+			}
+			
+			if (StringUtil.isBlank((String)m.get("hylx"))
+					|| "全部".equals((String)m.get("hylx"))) {
+			} else {
+				sql.append(" and HYLX=:khjl");
+				sql.setString("hylx", (String)m.get("hylx"));
+			}
+			
+
+			conn = ConnectionFactory.getConnection();
+			ps = conn.prepareStatement(sql.getSql());
+			ps = sql.fillParams(ps);
+			sql.log(this.getClass());
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				TRpt4grb4gywrbSVO  tRpt4grb4gywrb = new TRpt4grb4gywrbSVO();
+		           tRpt4grb4gywrb.setCreateDate(rs.getTimestamp("CREATE_DATE"));
+		           tRpt4grb4gywrb.setDylj(rs.getString("DYLJ"));
+		           tRpt4grb4gywrb.setHylx(rs.getString("HYLX"));
+		           tRpt4grb4gywrb.setKhq(rs.getString("KHQ"));
+		           tRpt4grb4gywrb.setOpenDate(rs.getTimestamp("OPEN_DATE"));
+		           tRpt4grb4gywrb.setRfz(rs.getString("RFZ"));
+		           tRpt4grb4gywrb.setSytqlj(rs.getString("SYTQLJ"));
+		           tRpt4grb4gywrb.setTcmc(rs.getString("TCMC"));
+		           tRpt4grb4gywrb.setZzs(rs.getString("ZZS"));
+		           res.add(tRpt4grb4gywrb);
+
+			}
+		} catch (SQLException se) {
+			throw new SysException("100003", "JDBC操作异常！", se);
+		} finally {
+			JdbcUtil.close(rs, ps);
+		}
 
 		if (0 == res.size())
 			res = null;
 		return res;
 	}
+	
+	/**
+	 *4G日报-4g业务日报:客户群
+	 * @param m
+	 * @return
+	 * @throws AppException
+	 * @throws SysException
+	 */
+	public List get4grb44gywrbQuerykhq() throws AppException, SysException {
+		List res = new ArrayList();
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Sql sql = new Sql("select  distinct khq from t_rpt_4grb_4gywrb ");
+		try {
+			conn = ConnectionFactory.getConnection();
+			ps = conn.prepareStatement(sql.getSql());
+			ps = sql.fillParams(ps);
+			sql.log(this.getClass());
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Map m1 = new HashMap();
+				m1.put("diqu", rs.getString("khq"));
+				res.add(m1);
+			}
+		} catch (SQLException se) {
+			throw new SysException("100003", "JDBC操作异常！", se);
+		} finally {
+			JdbcUtil.close(rs, ps);
+		}
+		if (0 == res.size())
+			res = null;
+		return res;
+	}
+	
+	
+	/**
+	 *4G日报-4g业务日报:hylx
+	 * @param m
+	 * @return
+	 * @throws AppException
+	 * @throws SysException
+	 */
+	public List get4grb44gywrbQueryhylx() throws AppException, SysException {
+		List res = new ArrayList();
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Sql sql = new Sql("select  distinct hylx from t_rpt_4grb_4gywrb ");
+		try {
+			conn = ConnectionFactory.getConnection();
+			ps = conn.prepareStatement(sql.getSql());
+			ps = sql.fillParams(ps);
+			sql.log(this.getClass());
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Map m1 = new HashMap();
+				m1.put("diqu", rs.getString("hylx"));
+				res.add(m1);
+			}
+		} catch (SQLException se) {
+			throw new SysException("100003", "JDBC操作异常！", se);
+		} finally {
+			JdbcUtil.close(rs, ps);
+		}
+		if (0 == res.size())
+			res = null;
+		return res;
+	}
+	
+	
+	
 	
 
 }
