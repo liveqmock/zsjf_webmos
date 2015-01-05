@@ -507,7 +507,7 @@ public class ZSJFAction extends DispatchAction{
 	}
 	
 	/**
-	 * 显示公告
+	 * 4g业务日报
 	 */
 	public ActionForward g4rb44grb(ActionMapping mapping,ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception{

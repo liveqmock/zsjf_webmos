@@ -2704,7 +2704,7 @@ public class ZSJFMDAOImpl implements IZSJFMDAO {
 			if (StringUtil.isBlank((String)m.get("hylx"))
 					|| "È«²¿".equals((String)m.get("hylx"))) {
 			} else {
-				sql.append(" and HYLX=:khjl");
+				sql.append(" and HYLX=:hylx");
 				sql.setString("hylx", (String)m.get("hylx"));
 			}
 			

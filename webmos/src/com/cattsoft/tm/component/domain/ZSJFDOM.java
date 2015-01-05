@@ -1030,12 +1030,12 @@ public class ZSJFDOM {
 		saveOperationLog(json);
 		String date=json.getString("date");
 		Date d=DateUtil.str2Date(date);
-		String khp=json.getString("khp");
+		String khp=json.getString("khq");
 		String hylx=json.getString("hylx");
 		String showwgFlag=json.getString("showwgFlag");
 		Map aMap=new HashMap();
 		aMap.put("openDate", date);
-		aMap.put("khp", khp);
+		aMap.put("khq", khp);
 		aMap.put("hylx", hylx);
 		  
 		IZSJFMDAO dao= (IZSJFMDAO) DAOFactory.getDAO(IZSJFMDAO.class);
@@ -1053,14 +1053,14 @@ public class ZSJFDOM {
 			m1.put("diqu", "全部");
 			khqList.add(0, m1);
 			
-			hylxlist=dao.getQdrb4QdkhjlQuery4khjl();
+			hylxlist=dao.get4grb44gywrbQueryhylx();
 			if(hylxlist==null) hylxlist=new ArrayList();
 			Map m2=new HashMap();
 			m2.put("diqu", "全部");
 			hylxlist.add(0, m2);
 		}
-		m.put("wglist", khqList);
-		m.put("khjllist", hylxlist);
+		m.put("khqList", khqList);
+		m.put("hylxlist", hylxlist);
 		
 		String res=com.alibaba.fastjson.JSONObject.toJSONString(m);
 		return res;
