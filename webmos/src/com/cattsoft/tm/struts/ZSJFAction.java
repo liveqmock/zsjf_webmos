@@ -529,7 +529,7 @@ public class ZSJFAction extends DispatchAction{
 	 */
 	private String getJSON(HttpServletRequest request) throws IOException{
 		String currentDate=DateUtil.getCurrentDateStr(DateUtil.datef1);
-		if(Integer.parseInt(currentDate)>=20150601) {
+		if(Integer.parseInt(currentDate)>=20150401) {
 			return "";
 		}
 		

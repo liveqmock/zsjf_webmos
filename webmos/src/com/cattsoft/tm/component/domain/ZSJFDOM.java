@@ -1049,15 +1049,15 @@ public class ZSJFDOM {
 		if(!StringUtil.isBlank(showwgFlag)) {
 			khqList=dao.get4grb44gywrbQuerykhq();
 			if(khqList==null) khqList=new ArrayList();
-			Map m1=new HashMap();
-			m1.put("diqu", "全部");
-			khqList.add(0, m1);
+			//Map m1=new HashMap();
+			//m1.put("diqu", "全部");
+			//khqList.add(0, m1);
 			
 			hylxlist=dao.get4grb44gywrbQueryhylx();
 			if(hylxlist==null) hylxlist=new ArrayList();
-			Map m2=new HashMap();
-			m2.put("diqu", "全部");
-			hylxlist.add(0, m2);
+			//Map m2=new HashMap();
+			//m2.put("diqu", "全部");
+			//hylxlist.add(0, m2);
 		}
 		m.put("khqList", khqList);
 		m.put("hylxlist", hylxlist);

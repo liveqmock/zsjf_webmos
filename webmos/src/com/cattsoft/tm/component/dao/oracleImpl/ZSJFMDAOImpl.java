@@ -2695,14 +2695,14 @@ public class ZSJFMDAOImpl implements IZSJFMDAO {
 			sql.setString("openDate", openDate);
 
 			if (StringUtil.isBlank((String)m.get("khq"))
-					|| "全部".equals((String)m.get("khq"))) {
+					 ) {
 			} else {
 				sql.append(" and KHQ=:khq");
 				sql.setString("khq", (String)m.get("khq"));
 			}
 			
 			if (StringUtil.isBlank((String)m.get("hylx"))
-					|| "全部".equals((String)m.get("hylx"))) {
+					) {
 			} else {
 				sql.append(" and HYLX=:hylx");
 				sql.setString("hylx", (String)m.get("hylx"));
