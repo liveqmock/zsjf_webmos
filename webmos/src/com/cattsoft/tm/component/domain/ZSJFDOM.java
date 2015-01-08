@@ -32,6 +32,7 @@ import com.cattsoft.tm.vo.NoticeSVO;
 import com.cattsoft.tm.vo.TRpt2g3grhrbSVO;
 import com.cattsoft.tm.vo.TRpt2gfzrbSVO;
 import com.cattsoft.tm.vo.TRpt3grbSVO;
+import com.cattsoft.tm.vo.TRpt4grb4gywrbSVO;
 import com.cattsoft.tm.vo.TRptGcjgtjMVO;
 import com.cattsoft.tm.vo.TRptGczttjSVO;
 import com.cattsoft.tm.vo.TRptHfyb3gybSVO;
@@ -1041,8 +1042,38 @@ public class ZSJFDOM {
 		IZSJFMDAO dao= (IZSJFMDAO) DAOFactory.getDAO(IZSJFMDAO.class);
 		List list=dao.g4rb44grb(aMap);
 		if(list==null)list=new ArrayList();
+		//计算合计
+		int sumrfz=0;
+		int sumdylj=0;
+		int sumsytqlj=0;
+		int sumzzs=0;
+		if(list.size()>0) {
+			for(int i =0;i<list.size();i++) {
+				TRpt4grb4gywrbSVO s=(TRpt4grb4gywrbSVO)list.get(i);
+				int rfz=Integer.parseInt(s.getRfz());
+				int dylx=Integer.parseInt(s.getDylj());
+				int sytq=Integer.parseInt(s.getSytqlj());
+				int zzs=Integer.parseInt(s.getZzs());
+				
+				sumrfz+=rfz;
+				sumdylj+=dylx;
+				sumsytqlj+=sytq;
+				sumzzs+=zzs;
+			}
+			TRpt4grb4gywrbSVO svo=new TRpt4grb4gywrbSVO();
+			svo.setTcmc("合计");
+			svo.setRfz(sumrfz+"");
+			svo.setDylj(sumdylj+"");
+			svo.setSytqlj(sumsytqlj+"");
+			svo.setZzs(sumzzs+"");
+			list.add(svo);
+		}
+		
+		
+		
 		Map m=new HashMap();
 		m.put("list", list);
+		
 		
 		List khqList=null;
 		List hylxlist=null;

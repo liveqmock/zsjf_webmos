@@ -2693,15 +2693,26 @@ public class ZSJFMDAOImpl implements IZSJFMDAO {
 			String openDate = (String) m.get("openDate");
 			sql.append(" and to_char(OPEN_DATE,'yyyy-mm-dd')=:openDate");
 			sql.setString("openDate", openDate);
+			
+			String khq=(String)m.get("khq");
+			String hylx=(String)m.get("hylx");
+			if("全部".equals(khq) && "全部".equals(hylx) ) {
+				sql.append(" and KHQ=:khq and HYLX=:hylx");
+				sql.setString("khq", (String)m.get("khq"));
+				sql.setString("hylx", (String)m.get("hylx"));
+			}else {
+				if("全部".equals(khq)) khq="";
+				if("全部".equals(hylx))hylx="";
+			}
 
-			if (StringUtil.isBlank((String)m.get("khq"))
+			if (StringUtil.isBlank(khq)
 					 ) {
 			} else {
 				sql.append(" and KHQ=:khq");
-				sql.setString("khq", (String)m.get("khq"));
+				sql.setString("khq", khq);
 			}
 			
-			if (StringUtil.isBlank((String)m.get("hylx"))
+			if (StringUtil.isBlank(hylx)
 					) {
 			} else {
 				sql.append(" and HYLX=:hylx");
