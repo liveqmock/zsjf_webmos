@@ -67,9 +67,9 @@ public class ZSJFMDAOImpl implements IZSJFMDAO {
 				"ZDYW_4GYLJ," +
 				"ZDYW_4GSYTQLJ," +
 				"ZDYW_4GZZS " +
-				"FROM T_RPT_ZDYWRTB WHERE 1=1 ");
+				"FROM T_RPT_ZDYWRTB_QD WHERE 1=1 ");
 		try {
-			sql.append(" and  zdyw_qy in ('校园','网格','渠道','集团','其它' ,'和林','土左','托县','武川','清水河','自营厅','电子渠道','合计') ");
+			//sql.append(" and  zdyw_qy in ('校园','网格','渠道','集团','其它' ,'和林','土左','托县','武川','清水河','自营厅','电子渠道','合计') ");
 
 			if (tRptZdywrtb.getFlagOpenDate() == 1) {
 				if (tRptZdywrtb.getOpenDate() == null) {
