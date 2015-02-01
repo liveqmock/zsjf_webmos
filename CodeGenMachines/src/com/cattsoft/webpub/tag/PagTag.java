@@ -264,10 +264,10 @@ public class PagTag extends BodyTagSupport {
 				out.print("&nbsp");
 				out.print("每页显示");
 				if (formNo != 0) {
-					out.print("<input type='text' name='pagSize' size='2' onkeydown='if(event.keyCode==13) {event.returnValue = false;document.forms["
+					out.print("<input type='text' name='pagSize' class='smalltext' size='2' onkeydown='if(event.keyCode==13) {event.returnValue = false;document.forms["
 									+ formNo + "].goButton.onclick();}'");
 				} else {
-					out.print("<input type='text' name='pagSize' size='2' onkeydown='if(event.keyCode==13) {event.returnValue = false;document.forms[0].goButton.onclick();}'");
+					out.print("<input type='text' name='pagSize' class='smalltext' size='2' onkeydown='if(event.keyCode==13) {event.returnValue = false;document.forms[0].goButton.onclick();}'");
 				}
 				out.print(" value='" + pagSize + "' >");
 				out.print("项");
@@ -276,10 +276,10 @@ public class PagTag extends BodyTagSupport {
 				out.print("&nbsp");
 				out.print("第");
 				if (formNo != 0) {
-					out.print("<input type='text' name='pageNo' size='2' onkeydown='if(event.keyCode==13) {event.returnValue = false;document.forms["
+					out.print("<input type='text' name='pageNo' size='2' class='smalltext' onkeydown='if(event.keyCode==13) {event.returnValue = false;document.forms["
 									+ formNo + "].goButton.onclick();}'");
 				} else {
-					out.print("<input type='text' name='pageNo' size='2' onkeydown='if(event.keyCode==13) {event.returnValue = false;document.forms[0].goButton.onclick();}'");
+					out.print("<input type='text' name='pageNo' size='2' class='smalltext' onkeydown='if(event.keyCode==13) {event.returnValue = false;document.forms[0].goButton.onclick();}'");
 				}
 				out.print(" value='" + pagNo + "' >");
 				out.print("页");

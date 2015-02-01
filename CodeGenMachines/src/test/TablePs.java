@@ -1534,8 +1534,8 @@ public class TablePs {
 			*/
 			//zsjf/zsjf_123@60.31.254.52:1521/zsjfdb
 			String url = "jdbc:oracle:thin:@60.31.254.52:1521:zsjfdb";
-			String userid = "zsjf";
-			String passwd = "zsjf_123";
+			String userid = "";
+			String passwd = "";
 			return DriverManager.getConnection(url, userid, passwd);
 
 		} catch (Exception ex) {
