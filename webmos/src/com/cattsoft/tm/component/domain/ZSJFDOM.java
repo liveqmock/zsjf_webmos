@@ -1098,6 +1098,84 @@ public class ZSJFDOM {
 	}
 	
 	
+	/**
+	 * 农村日报 农村网格日报
+	 * 
+	 * @param m
+	 * @return
+	 * @throws AppException
+	 * @throws SysException
+	 */
+	public String ncrb4ncwgrb(String reqParm) throws AppException, SysException {
+		com.alibaba.fastjson.JSONObject json=com.alibaba.fastjson.JSONObject.parseObject(reqParm); 
+		saveOperationLog(json);
+		String date=json.getString("date");
+		String staffId=json.getString("staffId");
+		String wg=json.getString("diqu");
+		String wgFlag=json.getString("showwgFlag");
+		Map m=new HashMap();
+		m.put("openDate", date);
+		m.put("staffId", staffId);
+		m.put("diqu", wg);
+		
+		IZSJFMDAO dao= (IZSJFMDAO) DAOFactory.getDAO(IZSJFMDAO.class);
+		List wgList=null;
+		if(!StringUtil.isBlank(wgFlag)) {
+			wgList=dao.qdrb4gwdywfzrbwgList();
+			if(wgList==null) wgList=new ArrayList();
+			Map m1=new HashMap();
+			m1.put("diqu", "全部");
+			wgList.add(0, m1);
+		}
+		
+		List list=dao.ncrb4ncwgrb(m);
+		if(list==null)list=new ArrayList();
+		Map resm=new HashMap();
+		resm.put("list", list);
+		resm.put("wglist", wgList);
+		String res=com.alibaba.fastjson.JSONObject.toJSONString(resm);
+		return res;
+	}
 	
+	
+	/**
+	 * 欠费日通报
+	 * 
+	 * @param m
+	 * @return
+	 * @throws AppException
+	 * @throws SysException
+	 */
+	public String qfrb4qfrtb(String reqParm) throws AppException, SysException{
+		com.alibaba.fastjson.JSONObject json=com.alibaba.fastjson.JSONObject.parseObject(reqParm); 
+		saveOperationLog(json);
+		String date=json.getString("date");
+		String staffId=json.getString("staffId");
+		String wg=json.getString("diqu");
+		String wgFlag=json.getString("showwgFlag");
+		Map m=new HashMap();
+		m.put("openDate", date);
+		m.put("staffId", staffId);
+		m.put("diqu", wg);
+		
+		IZSJFMDAO dao= (IZSJFMDAO) DAOFactory.getDAO(IZSJFMDAO.class);
+		List wgList=null;
+		if(!StringUtil.isBlank(wgFlag)) {
+			wgList=dao.qdrb4gwdywfzrbwgList();
+			if(wgList==null) wgList=new ArrayList();
+			Map m1=new HashMap();
+			m1.put("diqu", "全部");
+			wgList.add(0, m1);
+		}
+		
+		List list=dao.qfrb4qfrtb(m);
+		if(list==null)list=new ArrayList();
+		Map resm=new HashMap();
+		resm.put("list", list);
+		resm.put("wglist", wgList);
+		String res=com.alibaba.fastjson.JSONObject.toJSONString(resm);
+		return res;
+	
+	}
 	
 }

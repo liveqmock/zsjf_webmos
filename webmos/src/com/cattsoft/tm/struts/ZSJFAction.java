@@ -515,11 +515,45 @@ public class ZSJFAction extends DispatchAction{
 		String res=ZSJFDelegate.getDelegate().g4rb44grb(reqParm);
 		com.cattsoft.webpub.util.ReqUtil.write(response, res);
 		return null;
-	
-	
-		
 	}
-
+	
+	
+	/**
+	 * 农村日报 农村网格日报
+	 * @return
+	 * @throws AppException
+	 * @throws SysException
+	 */
+	public ActionForward ncrb4ncwgrb(ActionMapping mapping,ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception{
+		String reqParm=getJSON(request);
+		String res=ZSJFDelegate.getDelegate().ncrb4ncwgrb(reqParm);
+		com.cattsoft.webpub.util.ReqUtil.write(response, res);
+		System.out.println("res======"+res);
+		return null;
+	
+	}
+	
+	
+	/**
+	 * 欠费日通报
+	 * @param mapping
+	 * @param form
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ActionForward qfrb4qfrtb(ActionMapping mapping,ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception{
+		String reqParm=getJSON(request);
+		String res=ZSJFDelegate.getDelegate().qfrb4qfrtb(reqParm);
+		com.cattsoft.webpub.util.ReqUtil.write(response, res);
+		System.out.println("res======"+res);
+		return null;
+	}
+	
+	
 	
 	/**
 	 * 获得从客户端传入的json字符串

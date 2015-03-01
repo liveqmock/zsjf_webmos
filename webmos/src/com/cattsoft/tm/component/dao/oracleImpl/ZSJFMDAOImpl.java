@@ -37,6 +37,7 @@ import com.cattsoft.tm.vo.TRptHfybWgSVO;
 import com.cattsoft.tm.vo.TRptJtbbHybrbSVO;
 import com.cattsoft.tm.vo.TRptJtbbQsfzrbSVO;
 import com.cattsoft.tm.vo.TRptKdywrbSVO;
+import com.cattsoft.tm.vo.TRptNcrbNcwgzdywrbSVO;
 import com.cattsoft.tm.vo.TRptQdrbGwdywfzrbSVO;
 import com.cattsoft.tm.vo.TRptQdrbQdkhjlrbSVO;
 import com.cattsoft.tm.vo.TRptQdrbQdwgzdywrbSVO;
@@ -66,7 +67,11 @@ public class ZSJFMDAOImpl implements IZSJFMDAO {
 				"ZDYW_4GRFZ," +
 				"ZDYW_4GYLJ," +
 				"ZDYW_4GSYTQLJ," +
-				"ZDYW_4GZZS " +
+				"ZDYW_4GZZS, " +
+				"ZDYW_IPTV_RFZ,"+
+"ZDYW_IPTV_DYLJ,"+
+"ZDYW_IPTV_SYTQ,"+
+"ZDYW_IPTV_ZZS  " +
 				"FROM T_RPT_ZDYWRTB_QD WHERE 1=1 ");
 		try {
 			//sql.append(" and  zdyw_qy in ('校园','网格','渠道','集团','其它' ,'和林','土左','托县','武川','清水河','自营厅','电子渠道','合计') ");
@@ -133,6 +138,10 @@ public class ZSJFMDAOImpl implements IZSJFMDAO {
 				tRptZdywrtb.setZdyw4gsytqlj(rs.getString("ZDYW_4GSYTQLJ"));
 				tRptZdywrtb.setZdyw4gylj(rs.getString("ZDYW_4GYLJ"));
 				tRptZdywrtb.setZdyw4gzzs(rs.getString("ZDYW_4GZZS"));
+				tRptZdywrtb.setZdywiptvrfz(rs.getString("ZDYW_IPTV_RFZ"));
+				tRptZdywrtb.setZdywiptvdylj(rs.getString("ZDYW_IPTV_DYLJ"));
+				tRptZdywrtb.setZdywiptvsytq(rs.getString("ZDYW_IPTV_SYTQ"));
+				tRptZdywrtb.setZdywiptvzzs(rs.getString("ZDYW_IPTV_ZZS"));
 				res.add(tRptZdywrtb);
 
 			}
@@ -205,7 +214,11 @@ public class ZSJFMDAOImpl implements IZSJFMDAO {
 						"ZDYW_4GRFZ," +
 						"ZDYW_4GYLJ," +
 						"ZDYW_4GSYTQLJ," +
-						"ZDYW_4GZZS " +
+						"ZDYW_4GZZS," +
+						"ZDYW_IPTV_RFZ,"+
+"ZDYW_IPTV_DYLJ,"+
+"ZDYW_IPTV_SYTQ,"+
+"ZDYW_IPTV_ZZS  " +
 				" FROM T_RPT_ZDYWRTB WHERE 1=1 ");
 		try {
 			sql.append(" and  zdyw_qy in ('市区','和林','土左','托县','武川','清水河','合计') ");
@@ -272,6 +285,10 @@ public class ZSJFMDAOImpl implements IZSJFMDAO {
 				tRptZdywrtb.setZdyw4gsytqlj(rs.getString("ZDYW_4GSYTQLJ"));
 				tRptZdywrtb.setZdyw4gylj(rs.getString("ZDYW_4GYLJ"));
 				tRptZdywrtb.setZdyw4gzzs(rs.getString("ZDYW_4GZZS"));
+				tRptZdywrtb.setZdywiptvrfz(rs.getString("ZDYW_IPTV_RFZ"));
+				tRptZdywrtb.setZdywiptvdylj(rs.getString("ZDYW_IPTV_DYLJ"));
+				tRptZdywrtb.setZdywiptvsytq(rs.getString("ZDYW_IPTV_SYTQ"));
+				tRptZdywrtb.setZdywiptvzzs(rs.getString("ZDYW_IPTV_ZZS"));
 				res.add(tRptZdywrtb);
 
 			}
@@ -528,7 +545,7 @@ public class ZSJFMDAOImpl implements IZSJFMDAO {
 		ResultSet rs = null;
 		Sql sql = new Sql(
 				"SELECT CREATE_DATE,KD_DYLJ,KD_RFZ,KD_SYTQLJ,KD_ZZS,OCS3G_DYLJ,OCS3G_RFZ,OCS3G_SYTQLJ,OCS3G_ZZS,OPEN_DATE,PT2G_DYLJ,PT2G_RFZ,PT2G_SYTQLJ,PT2G_ZZS,PT3G_DYLJ,PT3G_RFZ,PT3G_SYTQLJ,PT3G_ZZS,WG_CODE,WG_MC,KDC_RFZ,KDC_DYLJ,KDC_SYTQLJ,KDC_ZZS, " +
-				"G2G3RH_RFZ,G2G3RH_DYLJ,G2G3RH_SYTQLJ,G2G3RH_ZZS,G4_RFZ,G4_DYLJ,G4_SYTQLJ,G4_ZZS  " +
+				"G2G3RH_RFZ,G2G3RH_DYLJ,G2G3RH_SYTQLJ,G2G3RH_ZZS,G4_RFZ,G4_DYLJ,G4_SYTQLJ,G4_ZZS,IPTV_RFZ,IPTV_SYTQ,IPTV_DYLJ,IPTV_ZZS  " +
 				" FROM T_RPG_WGRB_ZDYWLZRB a WHERE 1=1 ");
 
 		try {
@@ -582,6 +599,10 @@ public class ZSJFMDAOImpl implements IZSJFMDAO {
 				tRpgWgrbZdywlzrb.setG4dylj(rs.getString("G4_DYLJ"));
 				tRpgWgrbZdywlzrb.setG4sytqlj(rs.getString("G4_SYTQLJ"));
 				tRpgWgrbZdywlzrb.setG4zzs(rs.getString("G4_ZZS"));
+				tRpgWgrbZdywlzrb.setIptvrfz(rs.getString("IPTV_RFZ"));
+				tRpgWgrbZdywlzrb.setIptvdylj(rs.getString("IPTV_DYLJ"));
+				tRpgWgrbZdywlzrb.setIptvsytq(rs.getString("IPTV_SYTQ"));
+				tRpgWgrbZdywlzrb.setIptvzzs(rs.getString("IPTV_ZZS"));
 				res.add(tRpgWgrbZdywlzrb);
 
 			}
@@ -714,9 +735,9 @@ public class ZSJFMDAOImpl implements IZSJFMDAO {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		Sql sql = new Sql(
-				"select area_code wg_code,area_code_name wg_mc from td_m_area a where a.parent_area_code='A001' ");
-		try {
+		Sql sql = new Sql(  
+				"select  area_code wg_code,area_code_name wg_mc from td_m_area a where a.parent_area_code='A001'  and   type='网格' ");
+		try { 
 			conn = ConnectionFactory.getConnection();
 			ps = conn.prepareStatement(sql.getSql());
 			ps = sql.fillParams(ps);
@@ -2807,6 +2828,297 @@ public class ZSJFMDAOImpl implements IZSJFMDAO {
 		return res;
 	}
 	
+	
+	
+	/**
+	 * 农村日报 农村网格日报
+	 * 
+	 * @param m
+	 * @return
+	 * @throws AppException
+	 * @throws SysException
+	 */
+	public List ncrb4ncwgrb(Map m) throws AppException, SysException {
+
+		if (m == null) {
+			throw new AppException("100001", "缺少DAO操作对象！");
+		}
+
+		String openDate = (String) m.get("openDate");
+		String staffId = (String) m.get("staffId");
+		String wg = (String) m.get("diqu");
+
+		List res = new ArrayList();
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Sql sql = new Sql(" select * " + " from (SELECT OCS2G_DYLJSX,"
+				+ "     OCS2G_RJH," + "    OCS2G_RXS," + "     OCS2G_SYLJJH,"
+				+ "     PT2G_DYLJ," + "     PT2G_RFZ," + "     PT2G_SYTQ,"
+				+ "     PT2G_ZZS," + "     PT3G_RFZ," + "      PT4G_DYLJ,"
+				+ "     PT5G_SYTQ," + "      PT6G_ZZS," + "      WG_CODE,"
+				+ "      WG_MC," + "      0 as flags," + " OCS3GJH_RFZ  ,"
+				+ " OCS3GJH_DYLJ ," + " OCS3GJH_SYTQLJ," + " OCS3GJH_ZZS,"
+				+ " G2G3RH_RFZ," + " G2G3RH_DYLJ," + " G2G3RH_SYTQLJ,"
+				+ " G2G3RH_ZZS ," + "  " +
+						"G4_RFZ ," +
+						"G4_DYLJ ," +
+						"G4_SYTQ," +
+						"G4_ZZS " +
+						"FROM T_RPT_ncRB_ncWGZDYWRB a"
+				+ " WHERE 1 = 1"
+				+ " and to_char(OPEN_DATE, 'yyyy-mm-dd') = :openDate"
+				+ " and exists (select 1" + "        from staff_td_m_area b"
+				+ "      where a.wg_code = b.area_code "
+				+ "        and b.staff_id = :staffId)");
+		if ((!"全部".equals(wg)) && (!StringUtil.isBlank(wg))) {
+			sql.append(" and WG_MC=:wgmc");
+			sql.setString("wgmc", wg);
+		}
+
+		sql.append("  union all " +
+
+		"       SELECT sum(OCS2G_DYLJSX)," + "              sum(OCS2G_RJH),"
+				+ "              sum(OCS2G_RXS),"
+				+ "               sum(OCS2G_SYLJJH),"
+				+ "              sum(PT2G_DYLJ),"
+				+ "              sum(PT2G_RFZ),"
+				+ "              sum(PT2G_SYTQ),"
+				+ "              sum(PT2G_ZZS),"
+				+ "              sum(PT3G_RFZ),"
+				+ "              sum(PT4G_DYLJ),"
+				+ "              sum(PT5G_SYTQ),"
+				+ "              sum(PT6G_ZZS)," + "              '-' WG_CODE,"
+				+ "              '合计' WG_MC," + "              1 as flags,"
+				+ " sum(OCS3GJH_RFZ)  ," + " sum(OCS3GJH_DYLJ) ,"
+				+ " sum(OCS3GJH_SYTQLJ)," + " sum(OCS3GJH_ZZS),"
+				+ " sum(G2G3RH_RFZ)," + " sum(G2G3RH_DYLJ),"
+				+ " sum(G2G3RH_SYTQLJ)," + " sum(G2G3RH_ZZS) ,"
+				+"sum(G4_RFZ) ," 
+				+"sum(G4_DYLJ) ," 
+				+"sum(G4_SYTQ)," 
+				+"sum(G4_ZZS)  " 
+				+ "         FROM T_RPT_ncRB_ncWGZDYWRB a"
+				+ "        WHERE 1 = 1 "
+				+ "          and to_char(OPEN_DATE, 'yyyy-mm-dd') = :openDate"
+				+ "          and exists (select 1 "
+				+ "                 from staff_td_m_area b "
+				+ "                where a.wg_code = b.area_code "
+				+ "                  and b.staff_id = :staffId )");
+		if ((!"全部".equals(wg)) && (!StringUtil.isBlank(wg))) {
+			sql.append(" and WG_MC=:wgmc");
+			sql.setString("wgmc", wg);
+		}
+
+		sql.append(" ) order by flags");
+		try {
+
+			// sql.append(" and to_char(OPEN_DATE,'yyyy-mm-dd')=:openDate");
+			sql.setString("openDate", openDate);
+
+			// sql.append(" and exists (select 1 from staff_td_m_area b where a.wg_code=b.area_code and b.staff_id=:staffId )   ");
+
+			sql.setString("staffId", staffId);
+
+			conn = ConnectionFactory.getConnection();
+			ps = conn.prepareStatement(sql.getSql());
+			ps = sql.fillParams(ps);
+			sql.log(this.getClass());
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				TRptNcrbNcwgzdywrbSVO tRptQdrbGwdywfzrb = new TRptNcrbNcwgzdywrbSVO();
+				// tRptQdrbGwdywfzrb.setCreateDate(rs.getTimestamp("CREATE_DATE"));
+				tRptQdrbGwdywfzrb.setOcs2gDyljsx(rs.getString("OCS2G_DYLJSX"));
+				tRptQdrbGwdywfzrb.setOcs2gRjh(rs.getString("OCS2G_RJH"));
+				tRptQdrbGwdywfzrb.setOcs2gRxs(rs.getString("OCS2G_RXS"));
+				tRptQdrbGwdywfzrb.setOcs2gSyljjh(rs.getString("OCS2G_SYLJJH"));
+				// tRptQdrbGwdywfzrb.setOpenDate(rs.getTimestamp("OPEN_DATE"));
+				tRptQdrbGwdywfzrb.setPt2gDylj(rs.getString("PT2G_DYLJ"));
+				tRptQdrbGwdywfzrb.setPt2gRfz(rs.getString("PT2G_RFZ"));
+				tRptQdrbGwdywfzrb.setPt2gSytq(rs.getString("PT2G_SYTQ"));
+				tRptQdrbGwdywfzrb.setPt2gZzs(rs.getString("PT2G_ZZS"));
+				tRptQdrbGwdywfzrb.setPt3gRfz(rs.getString("PT3G_RFZ"));
+				tRptQdrbGwdywfzrb.setPt4gDylj(rs.getString("PT4G_DYLJ"));
+				tRptQdrbGwdywfzrb.setPt5gSytq(rs.getString("PT5G_SYTQ"));
+				tRptQdrbGwdywfzrb.setPt6gZzs(rs.getString("PT6G_ZZS"));
+				// tRptQdrbGwdywfzrb.setWdMc(rs.getString("WD_MC"));
+				tRptQdrbGwdywfzrb.setWgCode(rs.getString("WG_CODE"));
+				tRptQdrbGwdywfzrb.setWgMc(rs.getString("WG_MC"));
+				tRptQdrbGwdywfzrb.setOcs3gjhRfz(rs.getString("OCS3GJH_RFZ"));
+				tRptQdrbGwdywfzrb.setOcs3gjhDylj(rs.getString("OCS3GJH_DYLJ"));
+				tRptQdrbGwdywfzrb.setOcs3gjhSytqlj(rs
+						.getString("OCS3GJH_SYTQLJ"));
+				tRptQdrbGwdywfzrb.setOcs3gjhZzs(rs.getString("OCS3GJH_ZZS"));
+				tRptQdrbGwdywfzrb.setG2g3rhRfz(rs.getString("G2G3RH_RFZ"));
+				tRptQdrbGwdywfzrb.setG2g3rhDylj(rs.getString("G2G3RH_DYLJ"));
+				tRptQdrbGwdywfzrb
+						.setG2g3rhSytqlj(rs.getString("G2G3RH_SYTQLJ"));
+				tRptQdrbGwdywfzrb.setG2g3rhZzs(rs.getString("G2G3RH_ZZS"));
+				tRptQdrbGwdywfzrb.setG4Rfz(rs.getString("G4_RFZ"));
+				tRptQdrbGwdywfzrb.setG4Dylj(rs.getString("G4_DYLJ"));
+				tRptQdrbGwdywfzrb.setG4Sytq(rs.getString("G4_SYTQ"));
+				tRptQdrbGwdywfzrb.setG4Zzs(rs.getString("G4_ZZS"));
+				res.add(tRptQdrbGwdywfzrb);
+
+			}
+		} catch (SQLException se) {
+			throw new SysException("100003", "JDBC操作异常！", se);
+		} finally {
+			JdbcUtil.close(rs, ps);
+		}
+
+		if (0 == res.size())
+			res = null;
+		return res;
+
+	}
+
+	
+	/**
+	 * 欠费日通报
+	 * 
+	 * @param m
+	 * @return
+	 * @throws AppException
+	 * @throws SysException
+	 */
+	public List qfrb4qfrtb(Map m) throws AppException, SysException{
+		if (m == null) {
+			throw new AppException("100001", "缺少DAO操作对象！");
+		}
+
+		String openDate = (String) m.get("openDate");
+		String staffId = (String) m.get("staffId");
+		String wg = (String) m.get("diqu");
+
+		List res = new ArrayList();
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Sql sql = new Sql(" select * " + " from (SELECT GW_DYQFCZ,"+
+			"GW_DYQFJE,"+
+			"GW_DYQFHSL,"+
+			"GW_YQQF,"+
+			"G2_DYQFCZ,"+
+			"G2_DYQFJE,"+
+			"G2_DYQFHSL,"+
+			"G2_YQQF,"+
+			"G3_DYQFCZ,"+
+			"G3_DYQFJE,"+
+			"G3_DYQFHSL,"+
+			"G3_YQQF,"+
+			"G4_DYQFCZ,"+
+			"G4_DYQFJE,"+
+			"G4_DYQFHSL,"+
+			"G4_YQQF,"+
+			"WG_CODE"+
+			"WG_MC       0 as flags FROM T_RPT_QFRB_QFRTB a"
+				+ " WHERE 1 = 1"
+				+ " and to_char(OPEN_DATE, 'yyyy-mm-dd') = :openDate"
+				+ " and exists (select 1" + "        from staff_td_m_area b"
+				+ "      where a.wg_code = b.area_code "
+				+ "        and b.staff_id = :staffId)");
+		if ((!"全部".equals(wg)) && (!StringUtil.isBlank(wg))) {
+			sql.append(" and WG_MC=:wgmc");
+			sql.setString("wgmc", wg);
+		}
+
+		sql.append("  union all " +
+
+		"       SELECT SUM(GW_DYQFCZ),"+
+"SUM(GW_DYQFJE),"+
+"SUM(GW_DYQFHSL),"+
+"SUM(GW_YQQF),"+
+"SUM(G2_DYQFCZ),"+
+"SUM(G2_DYQFJE),"+
+"SUM(G2_DYQFHSL),"+
+"SUM(G2_YQQF),"+
+"SUM(G3_DYQFCZ),"+
+"SUM(G3_DYQFJE),"+
+"SUM(G3_DYQFHSL),"+
+"SUM(G3_YQQF),"+
+"SUM(G4_DYQFCZ),"+
+"SUM(G4_DYQFJE),"+
+"SUM(G4_DYQFHSL),"+
+"SUM(G4_YQQF),  "+       "       '-' WG_CODE,"
+				+ "              '合计' WG_MC," + "              1 as flags,"
+				+ "         FROM T_RPT_QFRB_QFRTB a"
+				+ "        WHERE 1 = 1 "
+				+ "          and to_char(OPEN_DATE, 'yyyy-mm-dd') = :openDate"
+				+ "          and exists (select 1 "
+				+ "                 from staff_td_m_area b "
+				+ "                where a.wg_code = b.area_code "
+				+ "                  and b.staff_id = :staffId )");
+		if ((!"全部".equals(wg)) && (!StringUtil.isBlank(wg))) {
+			sql.append(" and WG_MC=:wgmc");
+			sql.setString("wgmc", wg);
+		}
+
+		sql.append(" ) order by flags");
+		try {
+
+			// sql.append(" and to_char(OPEN_DATE,'yyyy-mm-dd')=:openDate");
+			sql.setString("openDate", openDate);
+
+			// sql.append(" and exists (select 1 from staff_td_m_area b where a.wg_code=b.area_code and b.staff_id=:staffId )   ");
+
+			sql.setString("staffId", staffId);
+
+			conn = ConnectionFactory.getConnection();
+			ps = conn.prepareStatement(sql.getSql());
+			ps = sql.fillParams(ps);
+			sql.log(this.getClass());
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				TRptNcrbNcwgzdywrbSVO tRptQdrbGwdywfzrb = new TRptNcrbNcwgzdywrbSVO();
+				// tRptQdrbGwdywfzrb.setCreateDate(rs.getTimestamp("CREATE_DATE"));
+				tRptQdrbGwdywfzrb.setOcs2gDyljsx(rs.getString("OCS2G_DYLJSX"));
+				tRptQdrbGwdywfzrb.setOcs2gRjh(rs.getString("OCS2G_RJH"));
+				tRptQdrbGwdywfzrb.setOcs2gRxs(rs.getString("OCS2G_RXS"));
+				tRptQdrbGwdywfzrb.setOcs2gSyljjh(rs.getString("OCS2G_SYLJJH"));
+				// tRptQdrbGwdywfzrb.setOpenDate(rs.getTimestamp("OPEN_DATE"));
+				tRptQdrbGwdywfzrb.setPt2gDylj(rs.getString("PT2G_DYLJ"));
+				tRptQdrbGwdywfzrb.setPt2gRfz(rs.getString("PT2G_RFZ"));
+				tRptQdrbGwdywfzrb.setPt2gSytq(rs.getString("PT2G_SYTQ"));
+				tRptQdrbGwdywfzrb.setPt2gZzs(rs.getString("PT2G_ZZS"));
+				tRptQdrbGwdywfzrb.setPt3gRfz(rs.getString("PT3G_RFZ"));
+				tRptQdrbGwdywfzrb.setPt4gDylj(rs.getString("PT4G_DYLJ"));
+				tRptQdrbGwdywfzrb.setPt5gSytq(rs.getString("PT5G_SYTQ"));
+				tRptQdrbGwdywfzrb.setPt6gZzs(rs.getString("PT6G_ZZS"));
+				// tRptQdrbGwdywfzrb.setWdMc(rs.getString("WD_MC"));
+				tRptQdrbGwdywfzrb.setWgCode(rs.getString("WG_CODE"));
+				tRptQdrbGwdywfzrb.setWgMc(rs.getString("WG_MC"));
+				tRptQdrbGwdywfzrb.setOcs3gjhRfz(rs.getString("OCS3GJH_RFZ"));
+				tRptQdrbGwdywfzrb.setOcs3gjhDylj(rs.getString("OCS3GJH_DYLJ"));
+				tRptQdrbGwdywfzrb.setOcs3gjhSytqlj(rs
+						.getString("OCS3GJH_SYTQLJ"));
+				tRptQdrbGwdywfzrb.setOcs3gjhZzs(rs.getString("OCS3GJH_ZZS"));
+				tRptQdrbGwdywfzrb.setG2g3rhRfz(rs.getString("G2G3RH_RFZ"));
+				tRptQdrbGwdywfzrb.setG2g3rhDylj(rs.getString("G2G3RH_DYLJ"));
+				tRptQdrbGwdywfzrb
+						.setG2g3rhSytqlj(rs.getString("G2G3RH_SYTQLJ"));
+				tRptQdrbGwdywfzrb.setG2g3rhZzs(rs.getString("G2G3RH_ZZS"));
+				tRptQdrbGwdywfzrb.setG4Rfz(rs.getString("G4_RFZ"));
+				tRptQdrbGwdywfzrb.setG4Dylj(rs.getString("G4_DYLJ"));
+				tRptQdrbGwdywfzrb.setG4Sytq(rs.getString("G4_SYTQ"));
+				tRptQdrbGwdywfzrb.setG4Zzs(rs.getString("G4_ZZS"));
+				res.add(tRptQdrbGwdywfzrb);
+
+			}
+		} catch (SQLException se) {
+			throw new SysException("100003", "JDBC操作异常！", se);
+		} finally {
+			JdbcUtil.close(rs, ps);
+		}
+
+		if (0 == res.size())
+			res = null;
+		return res;
+
+	
+	}
 	
 	
 	

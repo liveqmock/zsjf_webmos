@@ -260,4 +260,25 @@ public interface IZSJFMDAO extends IDAO{
 	 * @throws SysException
 	 */
 	public List get4grb44gywrbQueryhylx() throws AppException, SysException ;
+	
+
+	/**
+	 * 农村日报 农村网格日报
+	 * 
+	 * @param m
+	 * @return
+	 * @throws AppException
+	 * @throws SysException
+	 */
+	public List ncrb4ncwgrb(Map m) throws AppException, SysException;
+	
+	/**
+	 * 欠费日通报
+	 * 
+	 * @param m
+	 * @return
+	 * @throws AppException
+	 * @throws SysException
+	 */
+	public List qfrb4qfrtb(Map m) throws AppException, SysException;
 }
