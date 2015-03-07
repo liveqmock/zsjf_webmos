@@ -1150,18 +1150,16 @@ public class ZSJFDOM {
 		com.alibaba.fastjson.JSONObject json=com.alibaba.fastjson.JSONObject.parseObject(reqParm); 
 		saveOperationLog(json);
 		String date=json.getString("date");
-		String staffId=json.getString("staffId");
-		String wg=json.getString("diqu");
+		String wg=json.getString("diqu");//客户群
 		String wgFlag=json.getString("showwgFlag");
 		Map m=new HashMap();
 		m.put("openDate", date);
-		m.put("staffId", staffId);
-		m.put("diqu", wg);
+		m.put("diqu", wg);//客户群
 		
 		IZSJFMDAO dao= (IZSJFMDAO) DAOFactory.getDAO(IZSJFMDAO.class);
 		List wgList=null;
 		if(!StringUtil.isBlank(wgFlag)) {
-			wgList=dao.qdrb4gwdywfzrbwgList();
+			wgList=dao.queryCondition4Qfrb();
 			if(wgList==null) wgList=new ArrayList();
 			Map m1=new HashMap();
 			m1.put("diqu", "全部");

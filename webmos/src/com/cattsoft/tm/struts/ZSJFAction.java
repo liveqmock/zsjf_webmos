@@ -15,10 +15,12 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
 
+import com.cattsoft.pub.SysConstants;
 import com.cattsoft.pub.exception.AppException;
 import com.cattsoft.pub.exception.SysException;
 import com.cattsoft.pub.util.DateUtil;
 import com.cattsoft.pub.util.StringUtil;
+import com.cattsoft.pub.util.SysConfigData;
 import com.cattsoft.tm.delegate.ZSJFDelegate;
 
 public class ZSJFAction extends DispatchAction{
@@ -560,10 +562,12 @@ public class ZSJFAction extends DispatchAction{
 	 * @param request
 	 * @return
 	 * @throws IOException
+	 * @throws SysException 
 	 */
-	private String getJSON(HttpServletRequest request) throws IOException{
+	private String getJSON(HttpServletRequest request) throws IOException, SysException{
 		String currentDate=DateUtil.getCurrentDateStr(DateUtil.datef1);
-		if(Integer.parseInt(currentDate)>=20150401) {
+		String dDate=SysConfigData.getSysConfigCurValue(SysConstants.SERVER_OVER_DATE, null, null, null, null, null);
+		if(Integer.parseInt(currentDate)>=Integer.parseInt(dDate)) {
 			return "";
 		}
 		

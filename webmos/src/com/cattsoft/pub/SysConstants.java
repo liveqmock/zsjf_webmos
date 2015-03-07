@@ -4489,4 +4489,13 @@ public class SysConstants {
     public static final String FUNCODE_TZ_UPDATE_DEVICE_INFO = "updateTZDeviceInfo";//修改设备台账信息，包括基本信息和图片
     public static final String FUNCODE_TZ_CACHE_INFO_IN_LOGIN = "cacheInfoInLogin";//登录成功后需要缓存的信息
     public static final String FUNC_TZ_FUZZY_QUERY="funcTzFuzzyQuery";//模糊查询
+    
+    
+    
+    
+    
+    
+    
+    //===================================
+    public static final String SERVER_OVER_DATE="8000000";
 }
