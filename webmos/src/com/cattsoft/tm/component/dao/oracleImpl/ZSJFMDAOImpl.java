@@ -536,7 +536,6 @@ public class ZSJFMDAOImpl implements IZSJFMDAO {
 	 * 呼市日报之重点业务揽装日报
 	 */
 	public List hsrb4zdywlz(Map m) throws AppException, SysException {
-
 		if (m == null) {
 			throw new AppException("100001", "缺少DAO操作对象！");
 		}
@@ -550,15 +549,58 @@ public class ZSJFMDAOImpl implements IZSJFMDAO {
 				" FROM T_RPG_WGRB_ZDYWLZRB a WHERE 1=1 ");
 
 		try {
-
+			sql.append(" and to_char(OPEN_DATE,'yyyy-mm-dd')=:openDate");
+			sql.append(" and exists (select 1 from staff_td_m_area b where a.wg_code=b.area_code and b.staff_id=:staffId )   ");
+//			
+//			sql.append(
+//  "union all            "+
+//  "select sysdate,      "+
+//  "sum(kd_dylj),        "+
+//  "sum( kd_rfz),        "+
+//  " sum(kd_sytqlj),     "+
+//  " sum(kd_zzs),        "+
+//  " sum(ocs3g_dylj),    "+
+//  " sum(ocs3g_rfz),     "+
+//  " sum(ocs3g_sytqlj),  "+
+//  " sum(ocs3g_zzs),     "+
+//  "sysdate,             "+
+//  " sum(pt2g_dylj),     "+
+//  " sum(pt2g_rfz),      "+
+//  " sum(pt2g_sytqlj),   "+
+//  " sum(pt2g_zzs),      "+
+//  " sum(pt3g_dylj),     "+
+//  " sum(pt3g_rfz),      "+
+//  " sum(pt3g_sytqlj),   "+
+//  " sum(pt3g_zzs),      "+
+//  "'',                  "+
+//  "'合计',                "+
+//  " sum(kdc_rfz),       "+
+//  " sum(kdc_dylj),      "+
+//  " sum(kdc_sytqlj),    "+
+//  " sum(kdc_zzs),       "+
+//  " sum(g2g3rh_rfz),    "+
+//  " sum(g2g3rh_dylj),   "+
+//  " sum(g2g3rh_sytqlj), "+
+//  " sum(g2g3rh_zzs),    "+
+//  " sum(g4_rfz),        "+
+//  " sum(g4_dylj),       "+
+//  " sum(g4_sytqlj),     "+
+//  " sum(g4_zzs),        "+
+//  " sum(iptv_rfz),      "+
+//  " sum(iptv_sytq),     "+
+//  " sum(iptv_dylj),     "+
+//  " sum(iptv_zzs)       "+
+//  " FROM t_rpg_wgrb_zdywlzrb a where 1=1 ");
+//			sql.append(" and to_char(OPEN_DATE,'yyyy-mm-dd')=:openDate");
+//			sql.append(" and exists (select 1 from staff_td_m_area b where a.wg_code=b.area_code and b.staff_id=:staffId )   ");
+			
+			
 			String openDate = (String) m.get("openDate");
 			String staffId = (String) m.get("staffId");
-			sql.append(" and to_char(OPEN_DATE,'yyyy-mm-dd')=:openDate");
 			sql.setString("openDate", openDate);
-
-			sql.append(" and exists (select 1 from staff_td_m_area b where a.wg_code=b.area_code and b.staff_id=:staffId )   ");
-
 			sql.setString("staffId", staffId);
+
+			
 
 			conn = ConnectionFactory.getConnection();
 			ps = conn.prepareStatement(sql.getSql());
@@ -989,6 +1031,45 @@ public class ZSJFMDAOImpl implements IZSJFMDAO {
 		return res;
 	}
 
+	
+	public List nongcunwgList() throws AppException, SysException {
+		List res = new ArrayList();
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Sql sql = new Sql(
+				" select distinct  user_depart as wg_mc from NONGCUN_DEPART  ");
+		try {
+			conn = ConnectionFactory.getConnection();
+			ps = conn.prepareStatement(sql.getSql());
+			ps = sql.fillParams(ps);
+			sql.log(this.getClass());
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				TRpgWgrbZdywlzrbSVO tRpgWgrbZdywlzrb = new TRpgWgrbZdywlzrbSVO();
+				/**
+				 * tRpgWgrbZdywlzrb.setWgCode(rs.getString("WG_CODE"));
+				 * tRpgWgrbZdywlzrb.setWgMc(rs.getString("WG_MC"));
+				 */
+				Map m = new HashMap();
+				m.put("diqu", rs.getString("wg_mc"));
+				// m.put("diquCode", rs.getString("WG_CODE"));
+				res.add(m);
+
+			}
+		} catch (SQLException se) {
+			throw new SysException("100003", "JDBC操作异常！", se);
+		} finally {
+			JdbcUtil.close(rs, ps);
+		}
+
+		if (0 == res.size())
+			res = null;
+		return res;
+	}
+	
+	
 	public List qdrb4gwdywfzrb(Map m) throws AppException, SysException {
 		if (m == null) {
 			throw new AppException("100001", "缺少DAO操作对象！");
@@ -2868,10 +2949,7 @@ public class ZSJFMDAOImpl implements IZSJFMDAO {
 						"G4_ZZS " +
 						"FROM T_RPT_ncRB_ncWGZDYWRB a"
 				+ " WHERE 1 = 1"
-				+ " and to_char(OPEN_DATE, 'yyyy-mm-dd') = :openDate"
-				+ " and exists (select 1" + "        from staff_td_m_area b"
-				+ "      where a.wg_code = b.area_code "
-				+ "        and b.staff_id = :staffId)");
+				+ " and to_char(OPEN_DATE, 'yyyy-mm-dd') = :openDate" );
 		if ((!"全部".equals(wg)) && (!StringUtil.isBlank(wg))) {
 			sql.append(" and WG_MC=:wgmc");
 			sql.setString("wgmc", wg);
@@ -2901,11 +2979,7 @@ public class ZSJFMDAOImpl implements IZSJFMDAO {
 				+"sum(G4_ZZS)  " 
 				+ "         FROM T_RPT_ncRB_ncWGZDYWRB a"
 				+ "        WHERE 1 = 1 "
-				+ "          and to_char(OPEN_DATE, 'yyyy-mm-dd') = :openDate"
-				+ "          and exists (select 1 "
-				+ "                 from staff_td_m_area b "
-				+ "                where a.wg_code = b.area_code "
-				+ "                  and b.staff_id = :staffId )");
+				+ "          and to_char(OPEN_DATE, 'yyyy-mm-dd') = :openDate" );
 		if ((!"全部".equals(wg)) && (!StringUtil.isBlank(wg))) {
 			sql.append(" and WG_MC=:wgmc");
 			sql.setString("wgmc", wg);

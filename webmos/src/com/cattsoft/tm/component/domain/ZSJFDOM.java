@@ -1121,7 +1121,7 @@ public class ZSJFDOM {
 		IZSJFMDAO dao= (IZSJFMDAO) DAOFactory.getDAO(IZSJFMDAO.class);
 		List wgList=null;
 		if(!StringUtil.isBlank(wgFlag)) {
-			wgList=dao.qdrb4gwdywfzrbwgList();
+			wgList=dao.nongcunwgList();
 			if(wgList==null) wgList=new ArrayList();
 			Map m1=new HashMap();
 			m1.put("diqu", "È«²¿");

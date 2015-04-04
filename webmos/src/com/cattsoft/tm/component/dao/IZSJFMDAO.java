@@ -283,4 +283,6 @@ public interface IZSJFMDAO extends IDAO{
 	public List qfrb4qfrtb(Map m) throws AppException, SysException;
 	
 	public List queryCondition4Qfrb() throws AppException, SysException;
+	
+	public List nongcunwgList() throws AppException, SysException;
 }
